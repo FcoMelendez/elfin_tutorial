@@ -1,0 +1,13 @@
+{
+  "name": "elfin_server",
+  "version": "1.0.0",
+  "description": "Your Node.js Express application",
+  "main": "elfin_server_script.js",  
+  "scripts": {
+    "start": "node elfin_server.js"
+  },
+  "dependencies": {
+    "net": "latest"
+  }
+}
+

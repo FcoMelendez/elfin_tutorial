@@ -1,0 +1,13 @@
+version: '3'
+services:
+  my_node_server: # Specify the name you want for your container
+    image: elfin_server_dkr # Specify the image name for your Node.js application
+    ports:
+      - "2500:2500" # Replace YOUR_APP_PORT with the desired port number for your app
+    networks:
+          - my_custom_network
+
+networks:
+  my_custom_network:
+    external: true
+

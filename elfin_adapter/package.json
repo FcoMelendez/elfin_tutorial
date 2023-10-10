@@ -1,0 +1,36 @@
+{
+  "name": "elfin_adapter",
+  "version": "1.0.0",
+  "description": "Your Node.js Express application",
+  "main": "elfin_adapter.js",  
+  "scripts": {
+    "start": "node elfin_adapter.js"
+  },
+    "devDependencies": {
+    "grunt": "^1.0.4",
+    "grunt-bump": "^0.8.0",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-jsdoc": "^2.4.0",
+    "grunt-karma": "^3.0.2",
+    "grunt-terser": "^1.0.0",
+    "gruntify-eslint": "^5.0.0",
+    "istanbul": "^0.4.5",
+    "jasmine": "^3.5.0",
+    "jasmine-core": "^2.5.2",
+    "karma": "^6.3.4",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-coverage": "^2.0.2",
+    "karma-firefox-launcher": "^1.2.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-junit-reporter": "^1.2.0",
+    "moment": "^2.24.0",
+    "sanitize-html": "^2.4.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "whatwg-url": "^11.0.0",
+    "ngsijs": "latest"
+  }
+}
+
