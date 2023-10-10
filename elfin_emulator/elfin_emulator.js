@@ -1,7 +1,9 @@
 const net = require('net');
 const PORT = 2500; // Change this to the desired port number
 const DELAY_MS = 200; // 5Hz = 200ms delay
-const send_datasheet = false;
+const send_datasheet = true;
+var controllerOnOff = true; // true  (On) simulates the robot moving (Actual_PCS_TCP changes)
+                            // false (Off) simulates the robot stopped (Actual_PCS_TCP static)
 
 //-------------------------
 // Elfin Datasheet Template
@@ -113,12 +115,15 @@ const server = net.createServer((socket) => {
 
   // Function to send my_elfin_object to the client
   const sendMyElfinObject = () => {
-    // Simulate a change in the values of "Actual_PCS_TCP" 
-    let newPCS_TCP = my_elfin_object["PosAndVel"]["Actual_PCS_TCP"].map(element => {
-      const randomNumber = Math.random() * 3 - 1.5; // Generates a random number between -1.5 and 1.5
-      return (parseFloat(element) + randomNumber).toFixed(3);
-    });
-    my_elfin_object["PosAndVel"]["Actual_PCS_TCP"] = newPCS_TCP;
+    if (controllerOnOff == true)
+    {
+      // Simulate a change in the values of "Actual_PCS_TCP" 
+      let newPCS_TCP = my_elfin_object["PosAndVel"]["Actual_PCS_TCP"].map(element => {
+        const randomNumber = Math.random() * 3 - 1.5; // Generates a random number between -1.5 and 1.5
+        return (parseFloat(element) + randomNumber).toFixed(3);
+      });
+      my_elfin_object["PosAndVel"]["Actual_PCS_TCP"] = newPCS_TCP;
+    }
     // Send the new enhanced datasheet
     socket.write(JSON.stringify(my_elfin_object));
   };
@@ -140,8 +145,16 @@ const server = net.createServer((socket) => {
   // Handle data received from the client
   socket.on('data', (data) => {
     const receivedData = data.toString();
-    console.log('Received data from client:');
+    console.log('Received Command:');
     console.log(receivedData);
+    if (String(data).includes("stop"))
+    {
+      controllerOnOff = false;
+    }
+    else if (String(data).includes("move"))
+    {
+      controllerOnOff = true;
+    }
   });
 
   // Handle errors

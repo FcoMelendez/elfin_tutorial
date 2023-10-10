@@ -17,5 +17,5 @@ COPY . .
 EXPOSE 2500
 
 # Define the command to run your Node.js application
-CMD ["node", "elfin_server.js"]
+CMD ["node", "elfin_emulator.js"]
 

@@ -1,17 +1,18 @@
 const NGSI = require('ngsijs');
 const net = require('net');
 
-const connection = new NGSI.Connection("http://localhost:1026");
+const connection = new NGSI.Connection("http://orion:1026");
 
 const express = require('express');
 const app = express();
 const port = 3000;
 
-const ELFIN_SERVER_HOST = 'localhost'; // Change to the server's hostname or IP address
+const ELFIN_SERVER_HOST = 'elfin_emulator'; // Change to the server's hostname or IP address
 const ELFIN_SERVER_PORT = 2500; // Change to the server's port number
 
 const NGSI_ENTITY_ID = "ElfinRobot001";
 const NGSI_ENTITY_TYPE = "ElfinRobot";
+const ADAPTER_ADDRESS = "elfin-adapter"
 
 //------------------------
 // Mapping Elfin to NGSIv2
@@ -289,6 +290,9 @@ app.post('/notify', (req, res) => {
 
   // Handle the received data as needed
   console.log('Received POST data:', postData);
+  console.log(postData["data"][0]["command"]["value"]);
+  // Send the Southbound command to the Elfin robot
+  client.write(postData["data"][0]["command"]["value"]);
 
   // Respond with a confirmation message
   res.json({ message: 'Notification received successfully' });
@@ -296,7 +300,7 @@ app.post('/notify', (req, res) => {
 
 // Start the server and listen on the specified port
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}/`);
+  console.log(`Server is running on http://${ADAPTER_ADDRESS}:${port}/`);
 });
 
 connection.v2.createSubscription({
@@ -316,13 +320,14 @@ connection.v2.createSubscription({
    },
    "notification": {
        "http": {
-           "url": "http://localhost:3000/notify"
+           "url": "http://elfin-adapter:3000/notify"
        },
        "attrs": [
            "command"
        ]
-   },
-   "throttling": 5
+   }
+   //},
+   //"throttling": 5
 }).then(
     (response) => {
         // Subscription created successfully
