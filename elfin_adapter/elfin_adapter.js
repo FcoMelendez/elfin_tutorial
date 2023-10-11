@@ -19,10 +19,9 @@ const ADAPTER_ADDRESS = "elfin-adapter";
 //------------------------
 
 // Datasheet template
-const datasheet =
-{
+const datasheet = {
   PosAndVel: {
-    Actual_Position: [ "-180.314", "-2.028", "90.035", "1.648", "83.557", "-112.772", "-751.997", "-7.533", "427.782", "-175.325", "-0.174", "112.329" ],
+    Actual_Position: [ "-180.314","-2.028", "90.035", "1.648", "83.557", "-112.772", "-751.997", "-7.533", "427.782", "-175.325", "-0.174", "112.329" ],
     Actual_PCS_TCP: [ "-751.997", "-7.533", "427.782", "-175.325", "-0.174", "112.329" ],
     Actual_PCS_Base: [ "-733.627", "-0.776", "666.983", "-175.325", "-0.174", "112.329" ],
     Actual_PCS_Tool: [ "0.000", "0.000", "0.000", "0.000", "0.000", "0.000" ],
@@ -72,32 +71,32 @@ const datasheet =
     nAxisGroupErrorCode: [ 0 ]
   },
   HardLoad: {
-    "EtherCAT_TotalFrame": 40948973,
-    "EtherCAT_FramesPerSecond": 251,
-    "EtherCAT_TotalLostFrame": 88,
-    "EtherCAT_TxErrorFrame": 11,
-    "EtherCAT_RxErrorFrame": 1104,
-    "Box48IN_Voltage": "48.210",
-    "Box48IN_Current": "0.767",
-    "Box48Out_Voltage": "48.056",
-    "Box48Out_Current": "0.767",
-    "Slave_temperature": [ "44.812", "57.000", "56.125" ],
-    "Slave_Voltage": [ "47.990", "48.213", "47.990" ]
+    EtherCAT_TotalFrame: 40948973,
+    EtherCAT_FramesPerSecond: 251,
+    EtherCAT_TotalLostFrame: 88,
+    EtherCAT_TxErrorFrame: 11,
+    EtherCAT_RxErrorFrame: 1104,
+    Box48IN_Voltage: "48.210",
+    Box48IN_Current: "0.767",
+    Box48Out_Voltage: "48.056",
+    Box48Out_Current: "0.767",
+    Slave_temperature: [ "44.812", "57.000", "56.125" ],
+    Slave_Voltage: [ "47.990", "48.213", "47.990" ]
   },
   FTData: {
-    "FTControlState": 0,
-    "FTData": [ "0.000", "0.000", "0.000", "0.000", "0.000", "0.000" ],
-    "FTSrcData": [ "0.000", "0.000", "0.000", "0.000", "0.000", "0.000" ]
+    FTControlState: 0,
+    FTData: [ "0.000", "0.000", "0.000", "0.000", "0.000", "0.000" ],
+    FTSrcData: [ "0.000", "0.000", "0.000", "0.000", "0.000", "0.000" ]
   },
   RobotAuthorization: {
-    "DynDeviceCode": "061812",
-    "AuthorizedTimeLeftMinutes": "166878",
-    "AuthorizedTimeUsedMinutes": "92322"
+    DynDeviceCode: "061812",
+    AuthorizedTimeLeftMinutes: "166878",
+    AuthorizedTimeUsedMinutes: "92322"
   },
   Script: {
-    "errorCode": "0",
-    "cmdid": [ "", "", "", "", "", "" ],
-    "GlobalVar": [
+    errorCode: "0",
+    cmdid: [ "", "", "", "", "", "" ],
+    GlobalVar: [
       {
         "a": "-0.5"
       },
