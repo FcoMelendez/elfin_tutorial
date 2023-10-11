@@ -22,7 +22,7 @@ jobs:
         run: npm install eslint -g
 
       - name: Install Dependencies
-        run: npm install
+        run: npm install -g
 
       - name: Run ESLint
         run: npm run lint --prefix elfin_adapter
