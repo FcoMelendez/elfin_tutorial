@@ -20,6 +20,7 @@
     "jasmine-core": "^2.5.2",
     "moment": "^2.24.0",
     "sanitize-html": "^2.4.0",
+    "prettier": "~2.8.1",
     "eslint": "~8.31.0",
     "eslint-config-tamia": "~8.0.1",
     "eslint-plugin-prettier": "~4.2.1"
