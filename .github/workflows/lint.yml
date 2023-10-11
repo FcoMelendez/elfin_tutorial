@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: 14  # Specify your desired Node.js version
 
+      - name: Install ESLint
+        run: npm install eslint -g
+
       - name: Install Dependencies
         run: npm install
 
