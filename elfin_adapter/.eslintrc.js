@@ -1,11 +1,11 @@
 module.exports = {
   extends: "tamia",
   parserOptions: {
-    sourceType: "module"
+    sourceType: "module",
   },
   plugins: ["prettier"],
   rules: {
     "prettier/prettier": "error",
-    "valid-jsdoc": 0
-  }
+    "valid-jsdoc": 0,
+  },
 };
