@@ -1,27 +1,27 @@
-const NGSI = require('ngsijs');
-const net = require('net');
+const NGSI = require("ngsijs");
+const net = require("net");
 
 const connection = new NGSI.Connection("http://orion:1026");
 
-const express = require('express');
+const express = require("express");
 const app = express();
 const port = 3000;
 
-const ELFIN_SERVER_HOST = 'elfin_emulator'; // Change to the server's hostname or IP address
+const ELFIN_SERVER_HOST = "elfin_emulator"; // Change to the server's hostname or IP address
 const ELFIN_SERVER_PORT = 2500; // Change to the server's port number
 
 const NGSI_ENTITY_ID = "ElfinRobot001";
 const NGSI_ENTITY_TYPE = "ElfinRobot";
-const ADAPTER_ADDRESS = "elfin-adapter"
+const ADAPTER_ADDRESS = "elfin-adapter";
 
 //------------------------
 // Mapping Elfin to NGSIv2
 //------------------------
 
 // Datasheet template
-const datasheet = 
+const datasheet =
 {
-  "PosAndVel": {
+  PosAndVel: {
     "Actual_Position": [ "-180.314", "-2.028", "90.035", "1.648", "83.557", "-112.772", "-751.997", "-7.533", "427.782", "-175.325", "-0.174", "112.329" ],
     "Actual_PCS_TCP": [ "-751.997", "-7.533", "427.782", "-175.325", "-0.174", "112.329" ],
     "Actual_PCS_Base": [ "-733.627", "-0.776", "666.983", "-175.325", "-0.174", "112.329" ],
@@ -31,14 +31,14 @@ const datasheet =
     "Actual_Joint_Acceleration": [ "0.004", "0.008", "0.003", "-0.006", "0.008", "-0.010" ],
     "Actual_Override": "1.000"
   },
-  "EndIO": {
+  EndIO: {
     "EndDI": [ 0, 0, 0, 0 ],
     "EndDO": [ 0, 0, 0, 0 ],
     "EndButton": [ 0, 0, 0, 0 ],
     "EnableEndBTN": 0,
     "EndAI": [ "0.000", "0.000" ]
   },
-  "ElectricBoxIO": {
+  ElectricBoxIO: {
     "BoxCI": [ 0, 0, 0, 0, 0, 0, 0, 0 ],
     "BoxCO": [ 0, 0, 0, 0, 0, 0, 0, 0 ],
     "BoxDI": [ 0, 0, 0, 0, 0, 0, 0, 0 ],
@@ -46,7 +46,7 @@ const datasheet =
     "Conveyor": "0.000",
     "Encode": 0
   },
-  "ElectricBoxAnalogIO": {
+  ElectricBoxAnalogIO: {
     "BoxAnalogOutMode_1": 0,
     "BoxAnalogOutMode_2": 0,
     "BoxAnalogOut_1": "0.000",
@@ -54,7 +54,7 @@ const datasheet =
     "BoxAnalogIn_1": "-0.012",
     "BoxAnalogIn_2": "-0.049"
   },
-  "StateAndError": {
+  StateAndError: {
     "robotState": 33,
     "robotEnabled": 1,
     "robotPaused": 0,
@@ -71,7 +71,7 @@ const datasheet =
     "nAxisGroupStatus": [ 1 ],
     "nAxisGroupErrorCode": [ 0 ]
   },
-  "HardLoad": {
+  HardLoad: {
     "EtherCAT_TotalFrame": 40948973,
     "EtherCAT_FramesPerSecond": 251,
     "EtherCAT_TotalLostFrame": 88,
@@ -84,17 +84,17 @@ const datasheet =
     "Slave_temperature": [ "44.812", "57.000", "56.125" ],
     "Slave_Voltage": [ "47.990", "48.213", "47.990" ]
   },
-  "FTData": {
+  FTData: {
     "FTControlState": 0,
     "FTData": [ "0.000", "0.000", "0.000", "0.000", "0.000", "0.000" ],
     "FTSrcData": [ "0.000", "0.000", "0.000", "0.000", "0.000", "0.000" ]
   },
-  "RobotAuthorization": {
+  RobotAuthorization: {
     "DynDeviceCode": "061812",
     "AuthorizedTimeLeftMinutes": "166878",
     "AuthorizedTimeUsedMinutes": "92322"
   },
-  "Script": {
+  Script: {
     "errorCode": "0",
     "cmdid": [ "", "", "", "", "", "" ],
     "GlobalVar": [
