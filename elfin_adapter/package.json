@@ -26,6 +26,7 @@
     "karma-junit-reporter": "^1.2.0",
     "moment": "^2.24.0",
     "sanitize-html": "^2.4.0",
+    "eslint": "*",
     "eslint-config-standard": "latest"
   },
   "dependencies": {
