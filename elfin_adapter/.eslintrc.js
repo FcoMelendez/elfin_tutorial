@@ -5,11 +5,11 @@ module.exports = {
         "es2021": true
     },
     "extends": [
-        "standard",
-          env: {
-            es2021: true
-          },
+        "standard"
     ],
+    "env": {
+      "es2021": true
+    },
     "parserOptions": {
         "ecmaVersion": 13
     },
