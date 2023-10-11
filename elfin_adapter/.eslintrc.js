@@ -1,10 +1,10 @@
 module.exports = {
-  "extends": "tamia",
-  "parserOptions": {
-    "sourceType": "module"
+  'extends': "tamia",
+  'parserOptions': {
+    'sourceType': "module"
   },
-  "plugins": ["prettier"],
-  "rules": {
+  'plugins': ["prettier"],
+  'rules': {
     "prettier/prettier": "error",
     "valid-jsdoc": 0
   }
