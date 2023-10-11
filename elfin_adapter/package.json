@@ -25,7 +25,8 @@
     "karma-jasmine": "^1.0.2",
     "karma-junit-reporter": "^1.2.0",
     "moment": "^2.24.0",
-    "sanitize-html": "^2.4.0"
+    "sanitize-html": "^2.4.0",
+    "eslint-config-standard": "latest"
   },
   "dependencies": {
     "express": "^4.18.2",
