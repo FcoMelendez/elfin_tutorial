@@ -1,16 +1,11 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es2021": true
-    },
-    "extends": "standard",
-    "env": {
-      "es2021": true
-    },
-    "parserOptions": {
-        "ecmaVersion": 13
-    },
-    "rules": {
-    }
+  "extends": "tamia",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "valid-jsdoc": 0
+  }
 };
