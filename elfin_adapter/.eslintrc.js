@@ -7,8 +7,7 @@ module.exports = {
     "extends": [
         "standard",
           env: {
-            es2021: true,
-            // other environment settings
+            es2021: true
           },
     ],
     "parserOptions": {
