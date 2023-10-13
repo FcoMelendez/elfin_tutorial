@@ -361,16 +361,16 @@ connection.v2
       condition: {
         attrs: ["command"],
       },
-   },
-   notification: {
-     http: {
-       url: "http://elfin-adapter:3000/notify",
-     },
-     attrs: ["command"],
-   },
-   //},
-   //"throttling": 5
-  }
+    },
+    notification: {
+      http: {
+        url: "http://elfin-adapter:3000/notify",
+      },
+      attrs: ["command"],
+    },
+    //},
+    //"throttling": 5
+    }
 )
 .then(
   (response) => {
