@@ -272,14 +272,12 @@ client.connect(ELFIN_SERVER_PORT, ELFIN_SERVER_HOST, () => {
 });
 
 client.on("close", () => {
-  console.log('Connection to server closed.');
+  console.log("Connection to server closed.");
 });
 
 client.on("error", (err) => {
   console.error("Socket error:", err);
 });
-
-
 
 // Nothbound Traffic: 
 // - Sending robot data to the Orion Context Broker
@@ -295,29 +293,27 @@ client.on("data", (data) => {
         updatedAttributes[mapKeys[key]] = jsonObject[key];
       }
     }
-    updatedAttributes["id"] = NGSI_ENTITY_ID;
-    updatedAttributes["datasheet"] = jsonObject;
+    updatedAttributes.id = NGSI_ENTITY_ID;
+    updatedAttributes.datasheet = jsonObject;
     connection.v2.updateEntityAttributes(
-    updatedAttributes, 
-    {
-        keyValues: true
-    }).then(
-      (response) => {
-        // Attributes updated successfully
-        // response.correlator transaction id associated with the server response
-      }, (error) => {
-        // Error updating the attributes of the entity
-        // If the error was reported by Orion, error.correlator will be
-        // filled with the associated transaction id
-      }
+      updatedAttributes, 
+      {
+          keyValues: true
+      }).then(
+        (response) => {
+          // Attributes updated successfully
+          // response.correlator transaction id associated with the server response
+        }, 
+        (error) => {
+          // Error updating the attributes of the entity
+          // If the error was reported by Orion, error.correlator will be
+          // filled with the associated transaction id
+        }
     );
   } catch (err) {
     console.error("Error parsing JSON:", err);
   }
 });
-
-
-
 
 // Southbound Traffic: 
 // - HTTP Middleware sending Orion Context Broker 
