@@ -157,18 +157,18 @@ const datasheet = {
       {
         t_90: "-90.0",
       }
-    ]
-  }
+    ],
+  },
 };
 
 // "mapKeys" is an auxiliary function to process the Elfin's datasheet template.
 // It transforms a selection of nested DataSheet keys into first level keys
-// The object "enhancedDatasheet" results as a new Datasheet with the additional keys  
+// The object "enhancedDatasheet" results as a new Datasheet with the additional keys
 function mapKeys(sourceObj, keyMap) {
   const resultObj = {}; // Include the original object as "original" key
 
   for (const sourceKey in keyMap) {
-    if (keyMap.hasOwnProperty(sourceKey)) {
+    if (Object.prototype.hasOwnProperty.call(keyMap, sourceKey)) {
       const targetKey = keyMap[sourceKey];
       const sourceValue = getSourceValue(sourceObj, sourceKey);
 
@@ -186,7 +186,7 @@ function getSourceValue(obj, key) {
   let value = obj;
 
   for (const k of keys) {
-    if (value.hasOwnProperty(k)) {
+    if (Object.prototype.hasOwnProperty.call(value, k)) {
       value = value[k];
     } else {
       return undefined; // Key not found
@@ -202,7 +202,7 @@ function setTargetValue(obj, key, value) {
 
   for (let i = 0; i < keys.length - 1; i++) {
     const k = keys[i];
-    if (!target.hasOwnProperty(k)) {
+    if (!Object.prototype.hasOwnProperty.call(target, k)) {
       target[k] = {};
     }
     target = target[k];
@@ -238,7 +238,7 @@ for (const key in keyMap) {
     enhancedDatasheet[mapKeys[key]] = "init";
   }
 }
-enhancedDatasheet["id"] = NGSI_ENTITY_ID;
+enhancedDatasheet.id = NGSI_ENTITY_ID;
 enhancedDatasheet["type"] = NGSI_ENTITY_TYPE;
 enhancedDatasheet["datasheet"] = datasheet;
 enhancedDatasheet["command"] = "no cmd";
