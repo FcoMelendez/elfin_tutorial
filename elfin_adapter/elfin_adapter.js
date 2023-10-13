@@ -143,19 +143,19 @@ const datasheet = {
   },
   Script: {
     errorCode: "0",
-    cmdid: [ "", "", "", "", "", "" ],
+    cmdid: ["", "", "", "", "", ""],
     GlobalVar: [
       {
-        a: "-0.5"
+        a: "-0.5",
       },
       {
-        b: "3.0"
+        b: "3.0",
       },
       {
-        t90: "90.0"
+        t90: "90.0",
       },
       {
-        t_90: "-90.0"
+        t_90: "-90.0",
       }
     ]
   }
@@ -182,7 +182,7 @@ function mapKeys(sourceObj, keyMap) {
 }
 
 function getSourceValue(obj, key) {
-  const keys = key.split('.');
+  const keys = key.split(".");
   let value = obj;
 
   for (const k of keys) {
@@ -197,7 +197,7 @@ function getSourceValue(obj, key) {
 }
 
 function setTargetValue(obj, key, value) {
-  const keys = key.split('.');
+  const keys = key.split(".");
   let target = obj;
 
   for (let i = 0; i < keys.length - 1; i++) {
@@ -222,9 +222,9 @@ const keyMap = {
   "StateAndError.robotEnabled": "robotEnabled",
   "StateAndError.Error_Code": "Error_Code",
   "StateAndError.Error_AxisID": "Error_AxisID",
-  "EndIO": "EndIO",
-  "ElectricBoxIO": "ElectricBoxIO",
-  "ElectricBoxAnalogIO": "ElectricBoxAnalogIO"
+  EndIO: "EndIO",
+  ElectricBoxIO: "ElectricBoxIO",
+  ElectricBoxAnalogIO: "ElectricBoxAnalogIO"
 };
 
 // The enhanced datasheet cosists of
