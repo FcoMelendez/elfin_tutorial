@@ -258,14 +258,14 @@ client.connect(ELFIN_SERVER_PORT, ELFIN_SERVER_HOST, () => {
   // Connect to and Create the NGSIv2 Entity in Orion Context Broker
   connection.v2.createEntity(enhancedDatasheet, { keyValues: true }).then(
     (response) => {
-        console.log(response);
-        // Entity created successfully
-        // response.correlator transaction id associated with the server response
+      console.log(response);
+      // Entity created successfully
+      // response.correlator transaction id associated with the server response
     }, (error) => {
-        console.log(error);
-        // Error creating the entity
-        // If the error was reported by Orion, error.correlator will be
-        // filled with the associated transaction id
+      console.log(error);
+      // Error creating the entity
+      // If the error was reported by Orion, error.correlator will be
+      // filled with the associated transaction id
     }
   );
 });
@@ -301,14 +301,14 @@ client.on("data", (data) => {
     {
         keyValues: true
     }).then(
-        (response) => {
-            // Attributes updated successfully
-            // response.correlator transaction id associated with the server response
-        }, (error) => {
-            // Error updating the attributes of the entity
-            // If the error was reported by Orion, error.correlator will be
-            // filled with the associated transaction id
-        }
+      (response) => {
+        // Attributes updated successfully
+        // response.correlator transaction id associated with the server response
+      }, (error) => {
+        // Error updating the attributes of the entity
+        // If the error was reported by Orion, error.correlator will be
+        // filled with the associated transaction id
+      }
     );
   } catch (err) {
     console.error('Error parsing JSON:', err);
