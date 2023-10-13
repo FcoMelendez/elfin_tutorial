@@ -287,7 +287,7 @@ client.on("data", (data) => {
   const jsonStr = data.toString();
   try {
     const jsonObject = JSON.parse(jsonStr);
-    let updatedAttributes = mapKeys(jsonObject, keyMap);
+    const updatedAttributes = mapKeys(jsonObject, keyMap);
     for (const key in keyMap) {
       if (Object.prototype.hasOwnProperty.call(jsonObject, key)) {
         updatedAttributes[mapKeys[key]] = jsonObject[key];
@@ -295,13 +295,14 @@ client.on("data", (data) => {
     }
     updatedAttributes.id = NGSI_ENTITY_ID;
     updatedAttributes.datasheet = jsonObject;
-    connection.v2.updateEntityAttributes(updatedAttributes, {
+    connection.v2.updateEntityAttributes(updatedAttributes,
+      {
         keyValues: true,
       }).then(
         (response) => {
           // Attributes updated successfully
           // response.correlator transaction id associated with the server response
-        }, 
+        },
         (error) => {
           // Error updating the attributes of the entity
           // If the error was reported by Orion, error.correlator will be
