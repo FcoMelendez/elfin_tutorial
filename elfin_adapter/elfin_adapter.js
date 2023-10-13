@@ -295,19 +295,21 @@ client.on("data", (data) => {
     }
     updatedAttributes.id = NGSI_ENTITY_ID;
     updatedAttributes.datasheet = jsonObject;
-    connection.v2.updateEntityAttributes(updatedAttributes,
+    connection.v2.updateEntityAttributes(
+      updatedAttributes,
       {
         keyValues: true,
-      }).then(
-        (response) => {
-          // Attributes updated successfully
-          // response.correlator transaction id associated with the server response
-        },
-        (error) => {
-          // Error updating the attributes of the entity
-          // If the error was reported by Orion, error.correlator will be
-          // filled with the associated transaction id
-        }
+      }
+    ).then(
+      (response) => {
+        // Attributes updated successfully
+        // response.correlator transaction id associated with the server response
+      },
+      (error) => {
+        // Error updating the attributes of the entity
+        // If the error was reported by Orion, error.correlator will be
+        // filled with the associated transaction id
+      }
     );
   } catch (err) {
     console.error("Error parsing JSON:", err);
@@ -323,12 +325,12 @@ client.on("data", (data) => {
 app.use(express.json());
 
 // Respond to GET requests at the root path ('/')
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
 
 // Handle POST requests at the '/notify' path
-app.post('/notify', (req, res) => {
+app.post("/notify", (req, res) => {
   // Access the JSON data from the request body
   const postData = req.body;
 
@@ -347,38 +349,40 @@ app.listen(port, () => {
   console.log(`Server is running on http://${ADAPTER_ADDRESS}:${port}/`);
 });
 
-connection.v2.createSubscription({
-   "description": "Southbound commands from NGSI to Elfin Robot",
-   "subject": {
-       "entities": [
-           {
-               "id": NGSI_ENTITY_ID,
-               "type": NGSI_ENTITY_TYPE
-           }
-       ],
-       "condition": {
-           "attrs": [
-               "command"
-           ]
-       }
+connection.v2.createSubscription(
+  {
+    "description": "Southbound commands from NGSI to Elfin Robot",
+    "subject": {
+      "entities": [
+        {
+          "id": NGSI_ENTITY_ID,
+          "type": NGSI_ENTITY_TYPE
+        }
+      ],
+      "condition": {
+        "attrs": [
+        "command"
+        ]
+      }
    },
    "notification": {
-       "http": {
-           "url": "http://elfin-adapter:3000/notify"
-       },
-       "attrs": [
-           "command"
-       ]
+     "http": {
+       "url": "http://elfin-adapter:3000/notify"
+     },
+     "attrs": [
+       "command"
+     ]
    }
    //},
    //"throttling": 5
-}).then(
-    (response) => {
-        // Subscription created successfully
-        // response.correlator transaction id associated with the server response
-    }, (error) => {
-        // Error creating the subscription
-        // If the error was reported by Orion, error.correlator will be
-        // filled with the associated transaction id
-    }
+  }
+).then(
+  (response) => {
+    // Subscription created successfully
+    // response.correlator transaction id associated with the server response
+  }, (error) => {
+    // Error creating the subscription
+    // If the error was reported by Orion, error.correlator will be
+    // filled with the associated transaction id
+  }
 );
