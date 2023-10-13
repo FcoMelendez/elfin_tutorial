@@ -261,7 +261,8 @@ client.connect(ELFIN_SERVER_PORT, ELFIN_SERVER_HOST, () => {
       console.log(response);
       // Entity created successfully
       // response.correlator transaction id associated with the server response
-    }, (error) => {
+    },
+    (error) => {
       console.log(error);
       // Error creating the entity
       // If the error was reported by Orion, error.correlator will be
@@ -311,7 +312,7 @@ client.on("data", (data) => {
       }
     );
   } catch (err) {
-    console.error('Error parsing JSON:', err);
+    console.error("Error parsing JSON:", err);
   }
 });
 
@@ -328,7 +329,7 @@ app.use(express.json());
 
 // Respond to GET requests at the root path ('/')
 app.get('/', (req, res) => {
-  res.send('Hello, World!');
+  res.send("Hello, World!");
 });
 
 // Handle POST requests at the '/notify' path
@@ -343,7 +344,7 @@ app.post('/notify', (req, res) => {
   client.write(postData["data"][0]["command"]["value"]);
 
   // Respond with a confirmation message
-  res.json({ message: 'Notification received successfully' });
+  res.json({ message: 'Notification received successfully" });
 });
 
 // Start the server and listen on the specified port
