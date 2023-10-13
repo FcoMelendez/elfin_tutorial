@@ -295,12 +295,7 @@ client.on("data", (data) => {
     }
     updatedAttributes.id = NGSI_ENTITY_ID;
     updatedAttributes.datasheet = jsonObject;
-    connection.v2.updateEntityAttributes(
-      updatedAttributes,
-      {
-        keyValues: true,
-      }
-    ).then(
+    connection.v2.updateEntityAttributes(updatedAttributes, { keyValues: true, }).then(
       (response) => {
         // Attributes updated successfully
         // response.correlator transaction id associated with the server response
