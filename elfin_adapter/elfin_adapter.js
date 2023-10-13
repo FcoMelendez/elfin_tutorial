@@ -315,8 +315,8 @@ client.on("data", (data) => {
   }
 });
 
-// Southbound Traffic: 
-// - HTTP Middleware sending Orion Context Broker 
+// Southbound Traffic:
+// - HTTP Middleware sending Orion Context Broker
 //   notifications to the robot
 //-----------------------------------------------
 
@@ -349,43 +349,42 @@ app.listen(port, () => {
 });
 
 connection.v2
-  .createSubscription(
-    {
-      description: "Southbound commands from NGSI to Elfin Robot",
-      subject: {
-        entities: [
-          {
-            id: NGSI_ENTITY_ID,
-            type: NGSI_ENTITY_TYPE
-          }
-        ],
-        condition: {
-          attrs: [
-          "command"
-          ]
+  .createSubscription({
+    description: "Southbound commands from NGSI to Elfin Robot",
+    subject: {
+      entities: [
+        {
+          id: NGSI_ENTITY_ID,
+          type: NGSI_ENTITY_TYPE
         }
+      ],
+      condition: {
+        attrs: [
+        "command"
+        ]
+      }
+   },
+   notification: {
+     http: {
+       url: "http://elfin-adapter:3000/notify"
      },
-     notification: {
-       http: {
-         url: "http://elfin-adapter:3000/notify"
-       },
-       attrs: [
-         "command"
-       ]
-     }
-     //},
-     //"throttling": 5
-    }
-  )
-  .then(
-    (response) => {
-      // Subscription created successfully
-      // response.correlator transaction id associated with the server response
-      console.log(response.correlator);
-    }, (error) => {
-      // Error creating the subscription
-      // If the error was reported by Orion, error.correlator will be
-      // filled with the associated transaction id
-      console.log(error);
-    }
-  );
+     attrs: [
+       "command"
+     ]
+   }
+   //},
+   //"throttling": 5
+  }
+)
+.then(
+  (response) => {
+    // Subscription created successfully
+    // response.correlator transaction id associated with the server response
+    console.log(response.correlator);
+  }, (error) => {
+    // Error creating the subscription
+    // If the error was reported by Orion, error.correlator will be
+    // filled with the associated transaction id
+    console.log(error);
+  }
+);
