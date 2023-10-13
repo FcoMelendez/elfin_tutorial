@@ -21,30 +21,27 @@ const ADAPTER_ADDRESS = "elfin-adapter";
 // Datasheet template
 const datasheet = {
   PosAndVel: {
-    Actual_Position: [ "-180.314","-2.028", "90.035", "1.648", "83.557", "-112.772", "-751.997", "-7.533", "427.782", "-175.325", "-0.174", "112.329" ],
-    Actual_PCS_TCP: [ "-751.997", "-7.533", "427.782", "-175.325", "-0.174", "112.329" ],
-    Actual_PCS_Base: [ "-733.627", "-0.776", "666.983", "-175.325", "-0.174", "112.329" ],
-    Actual_PCS_Tool: [ "0.000", "0.000", "0.000", "0.000", "0.000", "0.000" ],
-    Actual_Joint_Current: [ "-0.049", "3.739", "-5.527", "-0.440", "0.053", "0.073" ],
-    Actual_Joint_Velocity: [ "0.017", "0.000", "0.000", "0.000", "0.000", "0.000" ],
-    Actual_Joint_Acceleration: [ "0.004", "0.008", "0.003", "-0.006", "0.008", "-0.010" ],
-    Actual_Override: "1.000"
-  },
+    Actual_Position: [ "-180.314","-2.028", "90.035", "1.648", "83.557", "-112.772", "-751.997", "-7.533", "427.782", "-175.325", "-0.174", "112.329"],
+    Actual_PCS_TCP: [ "-751.997", "-7.533", "427.782", "-175.325", "-0.174", "112.329"],
+    Actual_PCS_Base: [ "-733.627", "-0.776", "666.983", "-175.325", "-0.174", "112.329"],
+    Actual_PCS_Tool: [ "0.000", "0.000", "0.000", "0.000", "0.000", "0.000"],
+    Actual_Joint_Current: [ "-0.049", "3.739", "-5.527", "-0.440", "0.053", "0.073"],
+    Actual_Joint_Velocity: [ "0.017", "0.000", "0.000", "0.000", "0.000", "0.000"],
+    Actual_Joint_Acceleration: [ "0.004", "0.008", "0.003", "-0.006", "0.008", "-0.010"],
+    Actual_Override: "1.000"},
   EndIO: {
-    EndDI: [ 0, 0, 0, 0 ],
-    EndDO: [ 0, 0, 0, 0 ],
-    EndButton: [ 0, 0, 0, 0 ],
+    EndDI: [ 0, 0, 0, 0],
+    EndDO: [ 0, 0, 0, 0],
+    EndButton: [ 0, 0, 0, 0],
     EnableEndBTN: 0,
-    EndAI: [ "0.000", "0.000" ]
-  },
+    EndAI: [ "0.000", "0.000"]},
   ElectricBoxIO: {
-    BoxCI: [ 0, 0, 0, 0, 0, 0, 0, 0 ],
-    BoxCO: [ 0, 0, 0, 0, 0, 0, 0, 0 ],
-    BoxDI: [ 0, 0, 0, 0, 0, 0, 0, 0 ],
-    BoxDO: [ 0, 0, 0, 0, 0, 0, 0, 0 ],
+    BoxCI: [ 0, 0, 0, 0, 0, 0, 0, 0],
+    BoxCO: [ 0, 0, 0, 0, 0, 0, 0, 0],
+    BoxDI: [ 0, 0, 0, 0, 0, 0, 0, 0],
+    BoxDO: [ 0, 0, 0, 0, 0, 0, 0, 0],
     Conveyor: "0.000",
-    Encode: 0
-  },
+    Encode: 0},
   ElectricBoxAnalogIO: {
     BoxAnalogOutMode_1: 0,
     BoxAnalogOutMode_2: 0,
@@ -63,12 +60,12 @@ const datasheet = {
     Error_AxisID: 0,
     Error_Code: 0,
     IsReduceMode: 0,
-    BrakeState: [ 0, 0, 0, 0, 0, 0 ],
-    nAxisStatus: [ 3, 3, 3, 3, 3, 3 ],
-    nAxisErrorCode: [ 0, 0, 0, 0, 0, 0 ],
-    nResetSafeSpace: [ 1 ],
-    nAxisGroupStatus: [ 1 ],
-    nAxisGroupErrorCode: [ 0 ]
+    BrakeState: [0, 0, 0, 0, 0, 0],
+    nAxisStatus: [3, 3, 3, 3, 3, 3],
+    nAxisErrorCode: [0, 0, 0, 0, 0, 0],
+    nResetSafeSpace: [1],
+    nAxisGroupStatus: [1],
+    nAxisGroupErrorCode: [0]
   },
   HardLoad: {
     EtherCAT_TotalFrame: 40948973,
@@ -80,14 +77,13 @@ const datasheet = {
     Box48IN_Current: "0.767",
     Box48Out_Voltage: "48.056",
     Box48Out_Current: "0.767",
-    Slave_temperature: [ "44.812", "57.000", "56.125" ],
-    Slave_Voltage: [ "47.990", "48.213", "47.990" ]
+    Slave_temperature: ["44.812", "57.000", "56.125"],
+    Slave_Voltage: ["47.990", "48.213", "47.990"]
   },
   FTData: {
     FTControlState: 0,
-    FTData: [ "0.000", "0.000", "0.000", "0.000", "0.000", "0.000" ],
-    FTSrcData: [ "0.000", "0.000", "0.000", "0.000", "0.000", "0.000" ]
-  },
+    FTData: ["0.000", "0.000", "0.000", "0.000", "0.000", "0.000"],
+    FTSrcData: ["0.000", "0.000", "0.000", "0.000", "0.000", "0.000"]},
   RobotAuthorization: {
     DynDeviceCode: "061812",
     AuthorizedTimeLeftMinutes: "166878",
