@@ -156,7 +156,7 @@ const datasheet = {
       },
       {
         t_90: "-90.0",
-      }
+      },
     ],
   },
 };
@@ -224,7 +224,7 @@ const keyMap = {
   "StateAndError.Error_AxisID": "Error_AxisID",
   EndIO: "EndIO",
   ElectricBoxIO: "ElectricBoxIO",
-  ElectricBoxAnalogIO: "ElectricBoxAnalogIO"
+  ElectricBoxAnalogIO: "ElectricBoxAnalogIO",
 };
 
 // The enhanced datasheet cosists of
@@ -234,14 +234,14 @@ const keyMap = {
 // - the "command" attribute, which sends southbound commands from NGSI to Elfin
 const enhancedDatasheet = mapKeys(datasheet, keyMap);
 for (const key in keyMap) {
-  if (datasheet.hasOwnProperty(key)) {
+  if (datasheet.hasOwnProperty(key)){
     enhancedDatasheet[mapKeys[key]] = "init";
   }
 }
 enhancedDatasheet.id = NGSI_ENTITY_ID;
-enhancedDatasheet["type"] = NGSI_ENTITY_TYPE;
-enhancedDatasheet["datasheet"] = datasheet;
-enhancedDatasheet["command"] = "no cmd";
+enhancedDatasheet.type = NGSI_ENTITY_TYPE;
+enhancedDatasheet.datasheet = datasheet;
+enhancedDatasheet.command = "no cmd";
 
 //--------------------------
 // Setting Up the connection
