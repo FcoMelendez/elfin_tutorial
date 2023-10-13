@@ -344,7 +344,7 @@ app.post('/notify', (req, res) => {
   client.write(postData["data"][0]["command"]["value"]);
 
   // Respond with a confirmation message
-  res.json({ message: 'Notification received successfully" });
+  res.json({ message: "Notification received successfully" });
 });
 
 // Start the server and listen on the specified port
