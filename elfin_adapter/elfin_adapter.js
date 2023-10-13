@@ -129,32 +129,33 @@ const datasheet = {
     Box48Out_Voltage: "48.056",
     Box48Out_Current: "0.767",
     Slave_temperature: ["44.812", "57.000", "56.125"],
-    Slave_Voltage: ["47.990", "48.213", "47.990"]
+    Slave_Voltage: ["47.990", "48.213", "47.990"],
   },
   FTData: {
     FTControlState: 0,
     FTData: ["0.000", "0.000", "0.000", "0.000", "0.000", "0.000"],
-    FTSrcData: ["0.000", "0.000", "0.000", "0.000", "0.000", "0.000"]},
+    FTSrcData: ["0.000", "0.000", "0.000", "0.000", "0.000", "0.000"],
+  },
   RobotAuthorization: {
     DynDeviceCode: "061812",
     AuthorizedTimeLeftMinutes: "166878",
-    AuthorizedTimeUsedMinutes: "92322"
+    AuthorizedTimeUsedMinutes: "92322",
   },
   Script: {
     errorCode: "0",
     cmdid: [ "", "", "", "", "", "" ],
     GlobalVar: [
       {
-        "a": "-0.5"
+        a: "-0.5"
       },
       {
-        "b": "3.0"
+        b: "3.0"
       },
       {
-        "t90": "90.0"
+        t90: "90.0"
       },
       {
-        "t_90": "-90.0"
+        t_90: "-90.0"
       }
     ]
   }
