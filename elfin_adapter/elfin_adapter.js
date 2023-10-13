@@ -168,16 +168,15 @@ function setTargetValue(obj, key, value) {
 // 'Keys' in this keyMap MUST match the path of one single key in the Elfin datasheet.
 // 'Values' in this key map determine the name of the new -first level- Key to be created
 const keyMap = {
-  'PosAndVel': 'PosAndVel',
-  'PosAndVel.Actual_PCS_TCP': 'Actual_PCS_TCP',
-  'StateAndError.robotMoving': 'robotMoving',
-  'StateAndError.InPos': 'InPos',
-  'StateAndError.robotEnabled': 'robotEnabled',
-  'StateAndError.Error_Code': 'Error_Code',
-  'StateAndError.Error_AxisID': 'Error_AxisID',
-  'EndIO': 'EndIO',
-  'ElectricBoxIO': 'ElectricBoxIO',
-  'ElectricBoxAnalogIO': 'ElectricBoxAnalogIO'
+  "PosAndVel.Actual_PCS_TCP": "Actual_PCS_TCP",
+  "StateAndError.robotMoving": "robotMoving",
+  "StateAndError.InPos": "InPos",
+  "StateAndError.robotEnabled": "robotEnabled",
+  "StateAndError.Error_Code": "Error_Code",
+  "StateAndError.Error_AxisID": "Error_AxisID",
+  "EndIO": "EndIO",
+  "ElectricBoxIO": "ElectricBoxIO",
+  "ElectricBoxAnalogIO": "ElectricBoxAnalogIO"
 };
 
 // The enhanced datasheet cosists of
