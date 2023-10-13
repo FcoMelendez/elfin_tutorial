@@ -295,7 +295,8 @@ client.on("data", (data) => {
     }
     updatedAttributes.id = NGSI_ENTITY_ID;
     updatedAttributes.datasheet = jsonObject;
-    connection.v2.updateEntityAttributes(updatedAttributes, { keyValues: true })
+    connection.v2
+      .updateEntityAttributes(updatedAttributes, { keyValues: true })
       .then(
         (response) => {
           // Attributes updated successfully
@@ -333,7 +334,7 @@ app.post("/notify", (req, res) => {
   const postData = req.body;
 
   // Handle the received data as needed
-  console.log('Received POST data:', postData);
+  console.log("Received POST data:", postData);
   console.log(postData.data[0].command.value);
   // Send the Southbound command to the Elfin robot
   client.write(postData.data[0].command.value);
@@ -347,7 +348,8 @@ app.listen(port, () => {
   console.log(`Server is running on http://${ADAPTER_ADDRESS}:${port}/`);
 });
 
-connection.v2.createSubscription(
+connection.v2
+  .createSubscription(
     {
       description: "Southbound commands from NGSI to Elfin Robot",
       subject: {
