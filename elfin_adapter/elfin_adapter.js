@@ -234,7 +234,7 @@ const keyMap = {
 // - the "command" attribute, which sends southbound commands from NGSI to Elfin
 const enhancedDatasheet = mapKeys(datasheet, keyMap);
 for (const key in keyMap) {
-  if (Object.prototype.hasOwnProperty.call(datasheet, key)){
+  if (Object.prototype.hasOwnProperty.call(datasheet, key)) {
     enhancedDatasheet[mapKeys[key]] = "init";
   }
 }
@@ -257,25 +257,25 @@ client.connect(ELFIN_SERVER_PORT, ELFIN_SERVER_HOST, () => {
   client.write("Hello, World!");
   // Connect to and Create the NGSIv2 Entity in Orion Context Broker
   connection.v2.createEntity(enhancedDatasheet, { keyValues: true }).then(
-      (response) => {
-          console.log(response);
-          // Entity created successfully
-          // response.correlator transaction id associated with the server response
-      }, (error) => {
-          console.log(error);
-          // Error creating the entity
-          // If the error was reported by Orion, error.correlator will be
-          // filled with the associated transaction id
-      }
+    (response) => {
+        console.log(response);
+        // Entity created successfully
+        // response.correlator transaction id associated with the server response
+    }, (error) => {
+        console.log(error);
+        // Error creating the entity
+        // If the error was reported by Orion, error.correlator will be
+        // filled with the associated transaction id
+    }
   );
 });
 
-client.on('close', () => {
+client.on("close", () => {
   console.log('Connection to server closed.');
 });
 
-client.on('error', (err) => {
-  console.error('Socket error:', err);
+client.on("error", (err) => {
+  console.error("Socket error:", err);
 });
 
 
@@ -283,14 +283,14 @@ client.on('error', (err) => {
 // Nothbound Traffic: 
 // - Sending robot data to the Orion Context Broker
 //-------------------------------------------------
-client.on('data', (data) => {
+client.on("data", (data) => {
   // Assuming the server sends complete JSON objects, parse and print them
   const jsonStr = data.toString();
   try {
     const jsonObject = JSON.parse(jsonStr);
     var updatedAttributes = mapKeys(jsonObject, keyMap);
     for (const key in keyMap) {
-      if (jsonObject.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(jsonObject, key)) {
         updatedAttributes[mapKeys[key]] = jsonObject[key];
       }
     }
