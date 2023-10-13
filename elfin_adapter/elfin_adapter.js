@@ -230,11 +230,11 @@ const keyMap = {
 // The enhanced datasheet cosists of
 // - the original datasheet, which is attached to the key "datasheet"
 // - the series of keys which were asked to be transformed into first level attrs
-// - the "id" and "type" attributes to be used in the NGSI entity 
+// - the "id" and "type" attributes to be used in the NGSI entity
 // - the "command" attribute, which sends southbound commands from NGSI to Elfin
 const enhancedDatasheet = mapKeys(datasheet, keyMap);
 for (const key in keyMap) {
-  if (datasheet.hasOwnProperty(key)){
+  if (Object.prototype.hasOwnProperty.call(datasheet, key)){
     enhancedDatasheet[mapKeys[key]] = "init";
   }
 }
@@ -250,11 +250,13 @@ const client = new net.Socket();
 
 // Conenction to the Robot
 client.connect(ELFIN_SERVER_PORT, ELFIN_SERVER_HOST, () => {
-  console.log(`Connected to server at ${ELFIN_SERVER_HOST}:${ELFIN_SERVER_PORT}`);
+  console.log(
+    `Connected to server at ${ELFIN_SERVER_HOST}:${ELFIN_SERVER_PORT}`
+  );
   // Send a "Hello, World!" message to the server
-  client.write('Hello, World!');
+  client.write("Hello, World!");
   // Connect to and Create the NGSIv2 Entity in Orion Context Broker
-  connection.v2.createEntity(enhancedDatasheet, {keyValues: true}).then(
+  connection.v2.createEntity(enhancedDatasheet, { keyValues: true }).then(
       (response) => {
           console.log(response);
           // Entity created successfully
