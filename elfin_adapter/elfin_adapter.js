@@ -295,18 +295,18 @@ client.on("data", (data) => {
     }
     updatedAttributes.id = NGSI_ENTITY_ID;
     updatedAttributes.datasheet = jsonObject;
-    connection.v2.updateEntityAttributes(updatedAttributes, { keyValues: true, }).then(
-      (response) => {
-        // Attributes updated successfully
-        // response.correlator transaction id associated with the server response
-        console.log(response.correlator);
-      },
-      (error) => {
-        // Error updating the attributes of the entity
-        // If the error was reported by Orion, error.correlator will be
-        // filled with the associated transaction id
-        console.log(error);
-      }
+    connection.v2.updateEntityAttributes(updatedAttributes, { keyValues: true }).then(
+        (response) => {
+          // Attributes updated successfully
+          // response.correlator transaction id associated with the server response
+          console.log(response.correlator);
+        },
+        (error) => {
+          // Error updating the attributes of the entity
+          // If the error was reported by Orion, error.correlator will be
+          // filled with the associated transaction id
+          console.log(error);
+        }
     );
   } catch (err) {
     console.error("Error parsing JSON:", err);
@@ -347,41 +347,41 @@ app.listen(port, () => {
 });
 
 connection.v2.createSubscription(
-  {
-    "description": "Southbound commands from NGSI to Elfin Robot",
-    "subject": {
-      "entities": [
-        {
-          "id": NGSI_ENTITY_ID,
-          "type": NGSI_ENTITY_TYPE
+    {
+      "description": "Southbound commands from NGSI to Elfin Robot",
+      "subject": {
+        "entities": [
+          {
+            "id": NGSI_ENTITY_ID,
+            "type": NGSI_ENTITY_TYPE
+          }
+        ],
+        "condition": {
+          "attrs": [
+          "command"
+          ]
         }
-      ],
-      "condition": {
-        "attrs": [
-        "command"
-        ]
-      }
-   },
-   "notification": {
-     "http": {
-       "url": "http://elfin-adapter:3000/notify"
      },
-     "attrs": [
-       "command"
-     ]
-   }
-   //},
-   //"throttling": 5
-  }
-).then(
-  (response) => {
-    // Subscription created successfully
-    // response.correlator transaction id associated with the server response
-    console.log(response.correlator);
-  }, (error) => {
-    // Error creating the subscription
-    // If the error was reported by Orion, error.correlator will be
-    // filled with the associated transaction id
-    console.log(error);
-  }
-);
+     "notification": {
+       "http": {
+         "url": "http://elfin-adapter:3000/notify"
+       },
+       "attrs": [
+         "command"
+       ]
+     }
+     //},
+     //"throttling": 5
+    }
+  ).then(
+    (response) => {
+      // Subscription created successfully
+      // response.correlator transaction id associated with the server response
+      console.log(response.correlator);
+    }, (error) => {
+      // Error creating the subscription
+      // If the error was reported by Orion, error.correlator will be
+      // filled with the associated transaction id
+      console.log(error);
+    }
+  );
