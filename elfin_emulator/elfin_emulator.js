@@ -155,6 +155,10 @@ const server = net.createServer((socket) => {
     {
       controllerOnOff = true;
     }
+    let response = { success: receivedData+",OK,;", };
+    // Send the response to the command
+    console.log(response);
+    socket.write(JSON.stringify(response));
   });
 
   // Handle errors

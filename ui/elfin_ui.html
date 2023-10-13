@@ -61,6 +61,12 @@
                 .then(response => response.json())
                 .then(data => {
                     const jsonView = document.getElementById('json-view');
+                    if (Object.prototype.hasOwnProperty.call(data, "command_status"))
+                    { 
+                        console.log(data);
+                        data.command_status.value = decodeURIComponent(atob(data.command_status.value));
+                        data.command_info.value = decodeURIComponent(atob(data.command_info.value));
+                    }
                     jsonView.textContent = JSON.stringify(data, undefined, 2);
                     const detailJsonView = document.getElementById('actual_PCS_TCP-view');
                     detailJsonView.textContent = JSON.stringify(data["Actual_PCS_TCP"], undefined, 2);

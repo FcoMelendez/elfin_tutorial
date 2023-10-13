@@ -241,7 +241,9 @@ for (const key in keyMap) {
 enhancedDatasheet.id = NGSI_ENTITY_ID;
 enhancedDatasheet.type = NGSI_ENTITY_TYPE;
 enhancedDatasheet.datasheet = datasheet;
-enhancedDatasheet.command = "no cmd";
+enhancedDatasheet.command = "IDLE";
+enhancedDatasheet.command_status = Buffer.from("IDLE,;").toString('base64');
+enhancedDatasheet.command_info = Buffer.from("IDLE,;").toString('base64');
 
 //--------------------------
 // Setting Up the connection
@@ -285,29 +287,38 @@ client.on("error", (err) => {
 client.on("data", (data) => {
   // Assuming the server sends complete JSON objects, parse and print them
   const jsonStr = data.toString();
+  let updatedAttributes = {};
   try {
     const jsonObject = JSON.parse(jsonStr);
-    const updatedAttributes = mapKeys(jsonObject, keyMap);
-    for (const key in keyMap) {
-      if (Object.prototype.hasOwnProperty.call(jsonObject, key)) {
-        updatedAttributes[mapKeys[key]] = jsonObject[key];
+    if (Object.prototype.hasOwnProperty.call(jsonObject, "success"))
+    {
+      updatedAttributes.command_status = Buffer.from(jsonObject.success).toString('base64');
+      updatedAttributes.command_info = Buffer.from(jsonObject.success).toString('base64');
+    }
+    else
+    {
+      updatedAttributes = mapKeys(jsonObject, keyMap);
+      for (const key in keyMap) {
+        if (Object.prototype.hasOwnProperty.call(jsonObject, key)) {
+          updatedAttributes[mapKeys[key]] = jsonObject[key];      
+        }
       }
+      updatedAttributes.datasheet = jsonObject;
     }
     updatedAttributes.id = NGSI_ENTITY_ID;
-    updatedAttributes.datasheet = jsonObject;
     connection.v2
       .updateEntityAttributes(updatedAttributes, { keyValues: true })
       .then(
         (response) => {
           // Attributes updated successfully
           // response.correlator transaction id associated with the server response
-          console.log(response.correlator);
+          // console.log(response.correlator);
         },
         (error) => {
           // Error updating the attributes of the entity
           // If the error was reported by Orion, error.correlator will be
           // filled with the associated transaction id
-          console.log(error);
+          // console.log(error);
         }
       );
   } catch (err) {
@@ -338,7 +349,6 @@ app.post("/notify", (req, res) => {
   console.log(postData.data[0].command.value);
   // Send the Southbound command to the Elfin robot
   client.write(postData.data[0].command.value);
-
   // Respond with a confirmation message
   res.json({ message: "Notification received successfully" });
 });
@@ -348,6 +358,10 @@ app.listen(port, () => {
   console.log(`Server is running on http://${ADAPTER_ADDRESS}:${port}/`);
 });
 
+// Prepare the actuation bridge for NGSIv2
+// - Subscribe to the attribute "command"
+// - Create the attribute "command_status" (execution feedback)
+// - Create the attribute "command_info"   (final result) 
 connection.v2
   .createSubscription({
     description: "Southbound commands from NGSI to Elfin Robot",
@@ -375,12 +389,12 @@ connection.v2
     (response) => {
       // Subscription created successfully
       // response.correlator transaction id associated with the server response
-      console.log(response.correlator);
+      //console.log(response.correlator);
     },
     (error) => {
       // Error creating the subscription
       // If the error was reported by Orion, error.correlator will be
       // filled with the associated transaction id
-      console.log(error);
+      //console.log(error);
     }
   );
