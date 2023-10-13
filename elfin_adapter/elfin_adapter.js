@@ -355,23 +355,19 @@ connection.v2
       entities: [
         {
           id: NGSI_ENTITY_ID,
-          type: NGSI_ENTITY_TYPE
-        }
+          type: NGSI_ENTITY_TYPE,
+        },
       ],
       condition: {
-        attrs: [
-        "command"
-        ]
-      }
+        attrs: ["command"],
+      },
    },
    notification: {
      http: {
-       url: "http://elfin-adapter:3000/notify"
+       url: "http://elfin-adapter:3000/notify",
      },
-     attrs: [
-       "command"
-     ]
-   }
+     attrs: ["command"],
+   },
    //},
    //"throttling": 5
   }
