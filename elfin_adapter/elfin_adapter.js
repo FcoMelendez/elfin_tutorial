@@ -279,7 +279,7 @@ client.on("error", (err) => {
   console.error("Socket error:", err);
 });
 
-// Nothbound Traffic: 
+// Nothbound Traffic:
 // - Sending robot data to the Orion Context Broker
 //-------------------------------------------------
 client.on("data", (data) => {
@@ -287,7 +287,7 @@ client.on("data", (data) => {
   const jsonStr = data.toString();
   try {
     const jsonObject = JSON.parse(jsonStr);
-    var updatedAttributes = mapKeys(jsonObject, keyMap);
+    let updatedAttributes = mapKeys(jsonObject, keyMap);
     for (const key in keyMap) {
       if (Object.prototype.hasOwnProperty.call(jsonObject, key)) {
         updatedAttributes[mapKeys[key]] = jsonObject[key];
@@ -295,10 +295,8 @@ client.on("data", (data) => {
     }
     updatedAttributes.id = NGSI_ENTITY_ID;
     updatedAttributes.datasheet = jsonObject;
-    connection.v2.updateEntityAttributes(
-      updatedAttributes, 
-      {
-          keyValues: true
+    connection.v2.updateEntityAttributes(updatedAttributes, {
+        keyValues: true,
       }).then(
         (response) => {
           // Attributes updated successfully
@@ -335,9 +333,9 @@ app.post('/notify', (req, res) => {
 
   // Handle the received data as needed
   console.log('Received POST data:', postData);
-  console.log(postData["data"][0]["command"]["value"]);
+  console.log(postData.data.[0].command.value);
   // Send the Southbound command to the Elfin robot
-  client.write(postData["data"][0]["command"]["value"]);
+  client.write(postData.data.[0].command.value);
 
   // Respond with a confirmation message
   res.json({ message: "Notification received successfully" });
