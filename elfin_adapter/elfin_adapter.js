@@ -333,9 +333,9 @@ app.post('/notify', (req, res) => {
 
   // Handle the received data as needed
   console.log('Received POST data:', postData);
-  console.log(postData.data.[0].command.value);
+  console.log(postData.data[0].command.value);
   // Send the Southbound command to the Elfin robot
-  client.write(postData.data.[0].command.value);
+  client.write(postData.data[0].command.value);
 
   // Respond with a confirmation message
   res.json({ message: "Notification received successfully" });
