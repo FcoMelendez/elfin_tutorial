@@ -370,14 +370,14 @@ connection.v2
     },
     //},
     //"throttling": 5
-    }
-  )
+    })
   .then(
     (response) => {
       // Subscription created successfully
       // response.correlator transaction id associated with the server response
       console.log(response.correlator);
-    }, (error) => {
+    },
+    (error) => {
       // Error creating the subscription
       // If the error was reported by Orion, error.correlator will be
       // filled with the associated transaction id
