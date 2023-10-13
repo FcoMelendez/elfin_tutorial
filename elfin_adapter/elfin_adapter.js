@@ -370,7 +370,7 @@ connection.v2
     },
     //},
     //"throttling": 5
-    })
+  })
   .then(
     (response) => {
       // Subscription created successfully
