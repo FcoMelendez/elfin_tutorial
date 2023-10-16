@@ -124,7 +124,7 @@ const server = net.createServer((socket) => {
       });
       my_elfin_object["PosAndVel"]["Actual_PCS_TCP"] = newPCS_TCP;
     }
-    // Send the new enhanced datasheet
+    // Send the datasheet
     socket.write(JSON.stringify(my_elfin_object));
   };
 
